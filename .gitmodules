@@ -1,0 +1,3 @@
+[submodule "backend/src/OpenAI"]
+	path = backend/src/OpenAI
+	url = git@github.com:oishireiyo/OpenAI.git
