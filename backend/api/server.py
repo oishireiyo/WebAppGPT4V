@@ -7,9 +7,9 @@ from flask_cors import CORS
 app = Flask(__name__, static_folder='', template_folder='')
 CORS(app)
 
-sys.path.append('../payload')
-from inputGPT4Vision import InputGPT4Vision
-from translator import DeepLTranslator
+sys.path.append('../src')
+from OpenAI.src.inputGPT4Vision import InputGPT4Vision
+from DeepLAPI.translator import DeepLTranslator
 
 gpt4v = InputGPT4Vision()
 translator = DeepLTranslator()
