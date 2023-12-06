@@ -1,5 +1,6 @@
 import os
 import sys
+import copy
 from flask import Flask
 from flask import request, make_response, jsonify
 from flask_cors import CORS
@@ -35,6 +36,12 @@ def add_text_content():
 
   return make_response(jsonify(response))
 
+@app.route('/get_payload', methods=['GET'])
+def get_text_content():
+  response = {'result': True, 'payload': gpt4v.payload}
+
+  return make_response(jsonify(response))
+
 @app.route('/add_urlimage_content', methods=['POST'])
 def add_urlimage_content():
   arguments = request.get_json()
@@ -52,13 +59,6 @@ def add_b64image_content():
     b64image=arguments['b64image']
   )
   response = {'result': True}
-
-  return make_response(jsonify(response))
-
-@app.route('/print_payload', methods=['GET'])
-def print_payload():
-  payload = gpt4v.print_payload()
-  response = {'result': True, 'payload': payload}
 
   return make_response(jsonify(response))
 
