@@ -4,10 +4,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Axios from 'axios'
 
 export default function CallButton(props) {
-  const {videoRef, ready} = props
-
-  const [texts, setTexts] = React.useState([])
-  const [urlimages, setUrlImages] = React.useState([])
+  const {cardobjects, setCardobjects, question, videoRef, ready} = props
 
   const canvasRef = React.useRef(null)
 
@@ -20,8 +17,14 @@ export default function CallButton(props) {
 
     let urlimage = canvasRef.current.toDataURL('image/jpeg')
     let b64image = urlimage.split(',')[1]
-    const newurlimages = [...urlimages, urlimage]
-    setUrlImages(newurlimages)
+
+    let newcardobject = {
+      image: '',
+      title: '',
+      text: '',
+    }
+    newcardobject.image = urlimage
+    newcardobject.title = question
 
     // 対象のイメージを追加する
     await Axios.post('http://127.0.0.1:5000/add_b64image_content', {'b64image': b64image})
@@ -36,8 +39,7 @@ export default function CallButton(props) {
     await Axios.get('http://127.0.0.1:5000/execute')
     .then(function(response) {
       console.log(response)
-      const newtexts = [...texts, response.data.text_in_ja]
-      setTexts(newtexts)
+      newcardobject.text = response.data.text_in_ja
     })
     .catch(function(error) {
       console.error(error)
@@ -51,6 +53,9 @@ export default function CallButton(props) {
     .catch(function(error) {
       console.error(error)
     })
+
+    const newcardobjects = [...cardobjects, newcardobject]
+    setCardobjects(newcardobjects)
   }
 
   return (
@@ -59,16 +64,6 @@ export default function CallButton(props) {
         処理実行
       </Button>
       <canvas ref={canvasRef} hidden />
-      {/*{
-        urlimages.map(function(urlimage, index) {
-          return (<img key={`image-${index}`} src={urlimage} alt={`alt-image-${index}`} width={videoRef.current.videoWidth} height={videoRef.current.videoHeight} /> )
-        })
-      }*/}
-      {
-        texts.map(function(text, index) {
-          return (<h2>{index}: {text}</h2>)
-        })
-      }
     </>
   )
 }

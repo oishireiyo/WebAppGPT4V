@@ -6,7 +6,10 @@ import CallButton from '../atoms/CallButton'
 import MessageControl from '../molecules/MessageControl'
 import GetContentButton from '../atoms/GetContentButton'
 
-export default function GivenVideoPlayer() {
+export default function GivenVideoPlayer(props) {
+  const {cardobjects, setCardobjects} = props
+
+  const [question, setQuestion] = React.useState("この写真には何が映っていますか?")
   const [ready, setReady] = React.useState(false)
   const [file, setFile] = React.useState(null)
 
@@ -14,11 +17,23 @@ export default function GivenVideoPlayer() {
 
   return (
     <Stack direction="column" alignItems="center" spacing={2}>
-      <MessageControl add_message={true} placeholderForm="質問を記入してください。" ready={ready} setReady={setReady}/>
+      <MessageControl
+        question={question}
+        setQuestion={setQuestion}
+        placeholderForm="質問を記入してください。"
+        ready={ready}
+        setReady={setReady}
+      />
       <FileUploader file={file} setFile={setFile}/>
       <VideoPlayer file={file} videoRef={videoRef}/>
-      {/*<GetContentButton />*/}
-      <CallButton videoRef={videoRef} ready={ready}/>
+      <GetContentButton />
+      <CallButton
+        cardobjects={cardobjects}
+        setCardobjects={setCardobjects}
+        question={question}
+        videoRef={videoRef}
+        ready={ready}
+      />
     </Stack>
   )
 }
