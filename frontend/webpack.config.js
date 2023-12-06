@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const TailwindCSS = require('tailwindcss')
+const TailwindCSS = require('tailwindcss')
 const path = require('path')
 
 module.exports = {
@@ -48,16 +48,16 @@ module.exports = {
             loader: 'css-loader',
           },
           // Tailwind css使用する場合は以下の設定が必要。
-          // {
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     postcssOptions: {
-          //       plugins: [
-          //         TailwindCSS,
-          //       ],
-          //     },
-          //   },
-          // },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  TailwindCSS,
+                ],
+              },
+            },
+          },
         ],
       },
     ]
