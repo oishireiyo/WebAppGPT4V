@@ -1,5 +1,4 @@
 import React from 'react'
-import Stack from '@mui/material/Stack'
 import MessageForm from '../atoms/MessageForm'
 import RoleRadio from '../atoms/RoleRadio'
 import TranslateSwitch from '../atoms/TranslateSwitch'
@@ -13,14 +12,20 @@ export default function MessageControl(props) {
   const [doTranslate, setDoTranslate] = React.useState(true)
 
   return (
-    <Stack direction="column" spacing={2}>
+    <>
       <MessageForm message={question} setMessage={setQuestion} placeholder={placeholderForm} />
       <RoleRadio role={role} setRole={setRole} />
-      <Stack direction="row" spacing={2}>
-        <TranslateSwitch doTranslate={doTranslate} setDoTranslate={setDoTranslate} />
-        <AddContextButton role={role} message={question} doTranslate={doTranslate} ready={ready} setReady={setReady}/>
-        <DeleteContentButton ready={ready} setReady={setReady}/>
-      </Stack>
-    </Stack>
+      <div className='flex space-x-2'>
+        <div className='flex-none'>
+          <TranslateSwitch doTranslate={doTranslate} setDoTranslate={setDoTranslate} />
+        </div>
+        <div className='flex-none'>
+          <AddContextButton role={role} message={question} doTranslate={doTranslate} ready={ready} setReady={setReady}/>
+        </div>
+        <div className='flex-none'>
+          <DeleteContentButton ready={ready} setReady={setReady}/>
+        </div>
+      </div>
+    </>
   )
 }

@@ -10,6 +10,7 @@ CORS(app)
 
 sys.path.append('../src')
 from OpenAI.src.inputGPT4Vision import InputGPT4Vision
+from OpenAI.src.payloadParsor import PayloadParsor
 from DeepLAPI.translator import DeepLTranslator
 
 gpt4v = InputGPT4Vision()
@@ -19,12 +20,18 @@ translator = DeepLTranslator()
 def index():
   return 'Flask server is running :)'
 
-@app.route('/add_text_content', methods=['POST'])
-def add_text_content():
+@app.route('/add_message_entry', methods=['POST'])
+def add_message_entry():
   arguments = request.get_json()
   if len(gpt4v.payload['messages']) == 0:
     gpt4v.add_message_entry_as_specified_role(role=arguments['role'])
+  response = {'result': True}
 
+  return make_response(jsonify(response))
+
+@app.route('/add_text_content', methods=['POST'])
+def add_text_content():
+  arguments = request.get_json()
   gpt4v.add_text_content(
     text=translator.translate(
       text=arguments['text'],
@@ -38,7 +45,8 @@ def add_text_content():
 
 @app.route('/get_payload', methods=['GET'])
 def get_text_content():
-  response = {'result': True, 'payload': gpt4v.payload}
+  payload = PayloadParsor(payload=gpt4v.payload, ignore_image=True)
+  response = {'result': True, 'payload': payload}
 
   return make_response(jsonify(response))
 

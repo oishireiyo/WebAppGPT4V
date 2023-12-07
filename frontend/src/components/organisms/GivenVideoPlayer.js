@@ -1,10 +1,8 @@
 import React from 'react'
-import Stack from '@mui/material/Stack'
 import FileUploader from '../molecules/FileUploader'
 import VideoPlayer from '../molecules/VideoPlayer'
 import CallButton from '../atoms/CallButton'
 import MessageControl from '../molecules/MessageControl'
-import GetContentButton from '../atoms/GetContentButton'
 
 export default function GivenVideoPlayer(props) {
   const {cardobjects, setCardobjects} = props
@@ -16,24 +14,31 @@ export default function GivenVideoPlayer(props) {
   const videoRef = React.useRef(null)
 
   return (
-    <Stack direction="column" alignItems="center" spacing={2}>
-      <MessageControl
-        question={question}
-        setQuestion={setQuestion}
-        placeholderForm="質問を記入してください。"
-        ready={ready}
-        setReady={setReady}
-      />
-      <FileUploader file={file} setFile={setFile}/>
-      <VideoPlayer file={file} videoRef={videoRef}/>
-      <GetContentButton />
-      <CallButton
-        cardobjects={cardobjects}
-        setCardobjects={setCardobjects}
-        question={question}
-        videoRef={videoRef}
-        ready={ready}
-      />
-    </Stack>
+    <div className='space-y-2 justify-center'>
+      <div>
+        <FileUploader file={file} setFile={setFile}/>
+      </div>
+      <div>
+        <VideoPlayer file={file} videoRef={videoRef}/>
+      </div>
+      <div>
+        <MessageControl
+          question={question}
+          setQuestion={setQuestion}
+          placeholderForm="質問を記入してください。"
+          ready={ready}
+          setReady={setReady}
+        />
+      </div>
+      <div>
+        <CallButton
+          cardobjects={cardobjects}
+          setCardobjects={setCardobjects}
+          question={question}
+          videoRef={videoRef}
+          ready={ready}
+        />
+      </div>
+    </div>
   )
 }

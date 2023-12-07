@@ -1,10 +1,10 @@
 import React from "react"
 import Alert from '@mui/material/Alert'
 
-export default function() {
+export default function HowtoInfo() {
   return (
     <Alert severity="info">
-      質問と動画を設定してください。
+      動画と質問を設定してください。
     </Alert>
   )
 }
