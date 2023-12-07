@@ -1,6 +1,5 @@
 import os
 import sys
-import copy
 from flask import Flask
 from flask import request, make_response, jsonify
 from flask_cors import CORS
@@ -8,7 +7,25 @@ from flask_cors import CORS
 app = Flask(__name__, static_folder='', template_folder='')
 CORS(app)
 
-sys.path.append('../src')
+# Logging
+import logging
+logger = logging.getLogger(os.path.basename(__file__))
+logger.setLevel(logging.INFO)
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.INFO)
+handler_format = logging.Formatter('%(asctime)s : [%(name)s - %(lineno)d] %(levelname)-8s - %(message)s')
+stream_handler.setFormatter(handler_format)
+logger.addHandler(stream_handler)
+
+import optparse
+parser = optparse.OptionParser()
+parser.add_option('--host', dest='host', action='store', default='127.0.0.1', type='string', help='Host name')
+parser.add_option('--port', dest='port', action='store', default=5000, type='int', help='Port number')
+(options, args) = parser.parse_args()
+
+print(os.path.dirname(os.path.abspath(__file__)))
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../src/')
 from OpenAI.src.inputGPT4Vision import InputGPT4Vision
 from OpenAI.src.payloadParsor import PayloadParsor
 from DeepLAPI.src.translator import DeepLTranslator
@@ -94,4 +111,4 @@ def delete_content():
 
 if __name__ == '__main__':
   app.debug = True
-  app.run(host='127.0.0.1', port=5000)
+  app.run(host=options.host, port=options.port)

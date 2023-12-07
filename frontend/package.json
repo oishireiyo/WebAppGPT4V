@@ -2,7 +2,7 @@
   "name": "webappgpt4v",
   "version": "1.0.0",
   "description": "This web application is designed to return an answer to a question and a video which are given by user.",
-  "main": "src/index.js",
+  "main": "src/index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --open",
