@@ -2,8 +2,8 @@ FROM ubuntu:latest
 
 # Docker build時に使用する変数
 ARG EXPOSED_PORT=5000 \
-  OPENAI_API_KEY="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" \
-  DEEPL_API_KEY="6956f93c-7b23-2767-359a-b70dd5b2d436:fx"
+  OPENAI_API_KEY \
+  DEEPL_API_KEY
 
 # Docker container内での環境変数を設定
 ENV TZ=Asia/Tokyo \
