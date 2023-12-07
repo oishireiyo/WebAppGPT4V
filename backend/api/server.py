@@ -11,7 +11,7 @@ CORS(app)
 sys.path.append('../src')
 from OpenAI.src.inputGPT4Vision import InputGPT4Vision
 from OpenAI.src.payloadParsor import PayloadParsor
-from DeepLAPI.translator import DeepLTranslator
+from DeepLAPI.src.translator import DeepLTranslator
 
 gpt4v = InputGPT4Vision()
 translator = DeepLTranslator()
