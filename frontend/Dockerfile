@@ -28,7 +28,7 @@ RUN apt-get autoremove -y
 
 # working dirに移動し、必要なモジュールのインストール
 WORKDIR /frontend/
-RUN npm install
+RUN npm ci
 
 # Docker Continer内で使用するポート番号
 EXPOSE ${EXPOSED_PORT}
