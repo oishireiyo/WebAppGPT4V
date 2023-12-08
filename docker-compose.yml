@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    container_name: frontend
+    environment:
+      EXPOSED_PORT: 3000
+    ports:
+      - 3000:3000
+    networks:
+      application:
+        aliases:
+          - frontend.local
+
+  backend:
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      EXPOSED_PORT: 5000
+      OPENAI_API_KEY: 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
+      DEEPL_API_KEY: 6956f93c-7b23-2767-359a-b70dd5b2d436:fx
+    ports:
+      - 5001:5000
+    networks:
+      application:
+        aliases:
+          - backend.local
+
+networks:
+  application:
+    driver: bridge
