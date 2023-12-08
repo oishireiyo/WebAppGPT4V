@@ -6,7 +6,7 @@ export default function DeleteContentButton(props) {
   const {ready, setReady} = props
 
   async function handleClick() {
-    await Axios.get('http://127.0.0.1:5000/delete_content')
+    await Axios.get('/delete_content')
     .then(function(response) {
       console.log(response)
     })
@@ -14,7 +14,7 @@ export default function DeleteContentButton(props) {
       console.log(error)
     })
 
-    await Axios.get('http://127.0.0.1:5000/delete_messages')
+    await Axios.get('/delete_messages')
     .then(function(response) {
       console.log(response)
       setReady(false)

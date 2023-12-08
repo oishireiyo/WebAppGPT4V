@@ -6,7 +6,7 @@ export default function AddContextButton(props) {
   const {role, message, doTranslate, ready, setReady} = props
 
   async function handleClick() {
-    await Axios.post('http://127.0.0.1:5000/add_message_entry', {'role': role})
+    await Axios.post('/add_message_entry', {'role': role})
     .then(function(response) {
       console.log(response)
     })
@@ -14,7 +14,7 @@ export default function AddContextButton(props) {
       console.log(error)
     })
 
-    await Axios.post('http://127.0.0.1:5000/add_text_content', {'text': message, 'doTranslate': doTranslate})
+    await Axios.post('/add_text_content', {'text': message, 'doTranslate': doTranslate})
     .then(function(response) {
       console.log(response)
       setReady(true)

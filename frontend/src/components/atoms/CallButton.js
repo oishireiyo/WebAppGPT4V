@@ -27,7 +27,7 @@ export default function CallButton(props) {
     newcardobject.title = question
 
     // 対象のイメージを追加する
-    await Axios.post('http://127.0.0.1:5000/add_b64image_content', {'b64image': b64image})
+    await Axios.post('/add_b64image_content', {'b64image': b64image})
     .then(function(response) {
       console.log(response)
     })
@@ -36,7 +36,7 @@ export default function CallButton(props) {
     })
 
     // 処理を実行する
-    await Axios.get('http://127.0.0.1:5000/execute')
+    await Axios.get('/execute')
     .then(function(response) {
       console.log(response)
       newcardobject.text = response.data.text_in_ja
@@ -46,7 +46,7 @@ export default function CallButton(props) {
     })
 
     // 追加した写真を削除する
-    await Axios.get('http://127.0.0.1:5000/delete_content')
+    await Axios.get('/delete_content')
     .then(function(response) {
       console.log(response)
     })

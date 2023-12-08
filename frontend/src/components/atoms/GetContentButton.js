@@ -6,7 +6,7 @@ export default function GetContentButton() {
   const [payload, setPayload] = React.useState(null)
 
   function handleClick() {
-    Axios.get('http://127.0.0.1:5000/get_payload')
+    Axios.get('/get_payload')
     .then(function(response) {
       console.log(response.data.payload)
       setPayload(response.data.payload)
