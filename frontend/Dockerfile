@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 # Docker build時に使用する変数
-ARG EXPOSED_PORT=3000
+ARG EXPOSED_PORT=3210
 
 # Time zoneを変更
 ENV TZ=Asia/Tokyo \
@@ -36,4 +36,4 @@ EXPOSE ${EXPOSED_PORT}
 # コンテナ作成後に実行するコマンド
 # 全てのネットワークからのアクセスを受け入れるため、HOSTを0.0.0.0に設定する。
 # ポート番号はEXPOSEしたものと同一にする。
-CMD npm run dev
+CMD ./node_modules/.bin/webpack serve --open --host=0.0.0.0 --port=${EXPOSED_PORT}

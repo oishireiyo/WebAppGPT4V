@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     environment:
-      EXPOSED_PORT: 3000
+      EXPOSED_PORT: 3210
     ports:
-      - 3000:3000
+      - 3210:3210
     networks:
       application:
         aliases:
@@ -21,11 +21,11 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     environment:
-      EXPOSED_PORT: 5000
+      EXPOSED_PORT: 5432
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       DEEPL_API_KEY: ${DEEPL_API_KEY}
     ports:
-      - 5001:5000
+      - 5432:5432
     networks:
       application:
         aliases:

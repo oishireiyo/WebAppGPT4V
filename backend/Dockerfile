@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 # Docker build時に使用する変数
-ARG EXPOSED_PORT=5000 \
+ARG EXPOSED_PORT=5432 \
   OPENAI_API_KEY \
   DEEPL_API_KEY
 
