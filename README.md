@@ -39,7 +39,7 @@ python3 api/server.py
 
 以上のステップが完了したら、`http://127.0.0.1:3000`からアプリケーションを利用できます。デフォルトの設定では、ポート番号3000がfrontend、5000がbackendをリッスンします。
 
-## Dockerを利用したエフォートレスな利用
+## Dockerで実現するエフォートレスな利用
 `docker-compose.yml`を利用し、`backend/Dockerfile`と`frontend/Dockerfile`からイメージ、コンテナを作成・ネットワークの利用を行うことができます。
 ```bash
 cd path/to/root/
