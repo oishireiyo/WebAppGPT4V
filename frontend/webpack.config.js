@@ -78,8 +78,10 @@ module.exports = {
   target: 'web',
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'dist', 'index.html'),
-      favicon : "assets/favicon.ico",
+      inject: 'body',
+      filename: 'index.html',
+      template: path.join(__dirname, 'src', 'index.html'),
+      favicon : path.join(__dirname, 'assets', 'favicon.ico'),
     }),
   ],
 }
