@@ -9,6 +9,10 @@ export OPENAI_API_KEY="hogehoge"
 # DeepL API key
 export DEEPL_API_KEY="piyopiyo"
 ```
+Git submoduleを利用しているため、再帰的にcloneしてください。
+```shell
+git clone --recursive -b main git@github.com:oishireiyo/WebAppGPT4V.git 
+```
 
 ## ローカルで走らせたい場合
 frontendとbackendの設定が必要です。
