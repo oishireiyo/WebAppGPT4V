@@ -56,3 +56,17 @@ docker-compose up --build
 docker build -t イメージの名前 path/to/Dockerfile
 docker run -it -p 自分のポート:コンテナのポート(3000 or 5000) イメージの名前
 ```
+
+## 特記事項
+- WSGIサーバーとして、`gunicorn`を使用しているが`optparse`との相性が悪いのか実行すると以下のエラーが発生する。
+```bash
+$ gunicorn -b 127.0.0.1:8000 server:app
+[2023-12-13 02:03:27 +0900] [78862] [INFO] Starting gunicorn 21.1.0
+[2023-12-13 02:03:27 +0900] [78862] [INFO] Listening at: http://127.0.0.1:8000 (78862)
+[2023-12-13 02:03:27 +0900] [78862] [INFO] Using worker: sync
+[2023-12-13 02:03:27 +0900] [78863] [INFO] Booting worker with pid: 78863
+Usage: gunicorn [options]
+
+gunicorn: error: no such option: -b
+```
+何故か原因は不明だが、コンテナ内で環境変数を設定してポート番号を渡すことで、`optparse`の利用を回避した。
