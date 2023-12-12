@@ -17,14 +17,6 @@ handler_format = logging.Formatter('%(asctime)s : [%(name)s - %(lineno)d] %(leve
 stream_handler.setFormatter(handler_format)
 logger.addHandler(stream_handler)
 
-import optparse
-parser = optparse.OptionParser()
-parser.add_option('--host', dest='host', action='store', default='127.0.0.1', type='string', help='Host name')
-parser.add_option('--port', dest='port', action='store', default=5000, type='int', help='Port number')
-(options, args) = parser.parse_args()
-
-print(os.path.dirname(os.path.abspath(__file__)))
-
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../src/')
 from OpenAI.src.inputGPT4Vision import InputGPT4Vision
 from OpenAI.src.payloadParsor import PayloadParsor
@@ -111,4 +103,4 @@ def delete_content():
 
 if __name__ == '__main__':
   app.debug = True
-  app.run(host=options.host, port=options.port)
+  app.run(host='127.0.0.1', port=5432)
