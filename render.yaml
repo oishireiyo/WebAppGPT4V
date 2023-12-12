@@ -2,7 +2,7 @@ services:
   - type: web
     name: description-on-video-frame
     runtime: docker
-    repo: git@github.com:oishireiyo/WebAppGPT4V.git
+    repo: https://github.com/oishireiyo/WebAppGPT4V.git
     region: singapore
     plan: free
     branch: dev
