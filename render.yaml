@@ -1,9 +1,11 @@
 services:
   - type: web
     name: description-on-video-frame
-    runtime: docker
+    env: docker
     repo: https://github.com/oishireiyo/WebAppGPT4V.git
     region: singapore
     plan: free
     branch: dev
-    autoDeploy: true
+    dockerfilePath: ./frontend/Dockerfile
+    envVars:
+      - key: CORS_ORIGINS
