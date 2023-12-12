@@ -27,6 +27,7 @@ RUN apt-get update \
 RUN apt-get autoremove -y
 
 # working dirに移動し、必要なモジュールのインストール
+# npm ciはローカルの環境と全く同じパッケージをインストールするので、npm installより再現性が高い。
 WORKDIR /frontend/
 RUN npm ci
 

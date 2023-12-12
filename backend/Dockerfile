@@ -11,8 +11,6 @@ ENV TZ=Asia/Tokyo \
   OPENAI_API_KEY=${OPENAI_API_KEY} \
   DEEPL_API_KEY=${DEEPL_API_KEY}
 
-RUN echo ${DEEPL_API_KEY}
-
 # work dirとdownload dirを用意
 RUN mkdir -p /backend/ /download/
 
