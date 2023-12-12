@@ -6,6 +6,6 @@ services:
     region: singapore
     plan: free
     branch: dev
-    dockerfilePath: ./frontend/Dockerfile
+    rootDir: frontend
     envVars:
       - key: CORS_ORIGINS
