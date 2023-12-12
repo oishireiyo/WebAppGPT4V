@@ -1,6 +1,7 @@
 import os
 
 wsgi_app = 'server:app'
+chdir = '/backend/api/'
 reload = False
 accesslog = '-'
 errorlog = '-'

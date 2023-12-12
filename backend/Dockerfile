@@ -45,4 +45,4 @@ EXPOSE ${EXPOSED_PORT}
 # コンテナ作成後に実行するコマンド
 # 全てのネットワークからのアクセスを受け入れるため、HOSTを0.0.0.0に設定する。
 # ポート番号はEXPOSEしたものと同一にする。
-CMD python3 api/server.py --host=0.0.0.0 --port=${EXPOSED_PORT}
+CMD gunicorn --config api/gunicorn/setting.py
