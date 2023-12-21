@@ -2,7 +2,7 @@ import React from 'react'
 import HowtoInfo from '../atoms/HowtoInfo'
 import GivenVideoPlayer from '../organisms/GivenVideoPlayer'
 import ImageTextCardsViwer from '../organisms/ImageTextCardsViwer'
-import ApplicationBar from '../atoms/ApplicationBar'
+import ApplicationBar from '../organisms/ApplicationBar'
 import GetContentButton from '../atoms/GetContentButton'
 import PayloadInfo from '../atoms/PayloadInfo'
 

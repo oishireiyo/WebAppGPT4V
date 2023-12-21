@@ -101,6 +101,25 @@ def delete_content():
 
   return make_response(jsonify(response))
 
+@app.route('/set_DeepL_api_key', methods=['POST'])
+def set_DeepL_api_key():
+  arguments = request.get_json()
+  translator.set_api_key(api_key=arguments['api_key'])
+  response = {'result': True}
+
+  return make_response(jsonify(response))
+
+@app.route('/set_OpenAI_api_key', methods=['POST'])
+def set_OpenAI_api_key():
+  arguments = request.get_json()
+
+  print(arguments)
+
+  result = gpt4v.set_api_key(api_key=arguments['api_key'])
+  response = {'result': result}
+
+  return make_response(jsonify(response))
+
 if __name__ == '__main__':
   app.debug = True
   app.run(host='127.0.0.1', port=5432)
