@@ -18,11 +18,11 @@ stream_handler.setFormatter(handler_format)
 logger.addHandler(stream_handler)
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../src/')
-from OpenAI.src.inputGPT4Vision import InputGPT4Vision
-from OpenAI.src.payloadParsor import PayloadParsor
+from OpenAI.src.Vision import Vision
+from OpenAI.utils.payloadParsor import PayloadParsor
 from DeepLAPI.src.translator import DeepLTranslator
 
-gpt4v = InputGPT4Vision()
+gpt4v = Vision()
 translator = DeepLTranslator()
 
 @app.route('/', methods=['GET'])
@@ -104,17 +104,14 @@ def delete_content():
 @app.route('/set_DeepL_api_key', methods=['POST'])
 def set_DeepL_api_key():
   arguments = request.get_json()
-  translator.set_api_key(api_key=arguments['api_key'])
-  response = {'result': True}
+  result = translator.set_api_key(api_key=arguments['api_key'])
+  response = {'result': result}
 
   return make_response(jsonify(response))
 
 @app.route('/set_OpenAI_api_key', methods=['POST'])
 def set_OpenAI_api_key():
   arguments = request.get_json()
-
-  print(arguments)
-
   result = gpt4v.set_api_key(api_key=arguments['api_key'])
   response = {'result': result}
 
